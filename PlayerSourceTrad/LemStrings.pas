@@ -78,7 +78,7 @@ resourcestring
     'Un4seen Development for Bassmod at' + #13 +
     'http://www.un4seen.com' + #13 +
     'The Lemmings Forums at' + #13 +
-    'http://Lemmings.isamedia.org' + #13 +
+    'https://www.lemmingsforums.net/' + #13 +
     'Volker Oth, ccexplore and Mindless for sharing sourcecode, resources ' +
     'and technical information about lemmings' + #13 +
     'Original credits...'  + #13 +
