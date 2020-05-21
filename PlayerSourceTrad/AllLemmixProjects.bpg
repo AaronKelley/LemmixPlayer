@@ -1,0 +1,49 @@
+#------------------------------------------------------------------------------
+VERSION = BWS.01
+#------------------------------------------------------------------------------
+!ifndef ROOT
+ROOT = $(MAKEDIR)\..
+!endif
+#------------------------------------------------------------------------------
+MAKE = $(ROOT)\bin\make.exe -$(MAKEFLAGS) -f$**
+DCC = $(ROOT)\bin\dcc32.exe $**
+BRCC = $(ROOT)\bin\brcc32.exe $**
+#------------------------------------------------------------------------------
+PROJECTS = CustLemmix.exe LemmixPlayerFlexiTrad.exe LemmixPlayerFlexiTrad2.exe \
+  LemmixPlayer.exe LemmixPlayerOhNo.exe LemmixPlayerXmas.exe LemmixPlayerH94.exe \
+  LemmixPlayerCOVOX.exe LemmixPlayerPrima.exe LemmixPlayerExtra.exe
+#------------------------------------------------------------------------------
+default: $(PROJECTS)
+#------------------------------------------------------------------------------
+
+CustLemmix.exe: CustLemmix.dpr
+  $(DCC)
+
+LemmixPlayerFlexiTrad.exe: LemmixPlayerFlexiTrad.dpr
+  $(DCC)
+
+LemmixPlayerFlexiTrad2.exe: LemmixPlayerFlexiTrad2.dpr
+  $(DCC)
+
+LemmixPlayer.exe: LemmixPlayer.dpr
+  $(DCC)
+
+LemmixPlayerOhNo.exe: LemmixPlayerOhNo.dpr
+  $(DCC)
+
+LemmixPlayerXmas.exe: LemmixPlayerXmas.dpr
+  $(DCC)
+
+LemmixPlayerH94.exe: LemmixPlayerH94.dpr
+  $(DCC)
+
+LemmixPlayerCOVOX.exe: LemmixPlayerCOVOX.dpr
+  $(DCC)
+
+LemmixPlayerPrima.exe: LemmixPlayerPrima.dpr
+  $(DCC)
+
+LemmixPlayerExtra.exe: LemmixPlayerExtra.dpr
+  $(DCC)
+
+
