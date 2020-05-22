@@ -3884,7 +3884,8 @@ begin
 
     // find first following non removed lemming
     while (Index_LemmingToBeNuked <{=} LemmingsReleased)
-    and (LemmingList[Index_LemmingToBeNuked].LemRemoved) do
+    and (LemmingList[Index_LemmingToBeNuked].LemRemoved)
+    and not (LemmingList[Index_LemmingToBeNuked].LemExploded and (LemmingList[Index_LemmingToBeNuked].LemParticleTimer > 0)) do
       Inc(Index_LemmingToBeNuked);
 
     if (Index_LemmingToBeNuked > LemmingsReleased - 1) then // added - 1
