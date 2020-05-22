@@ -37,7 +37,7 @@ type
     DX, DY: ShortInt
   end;
   TParticleArray = packed array[0..79] of TParticleRec;
-  TParticleTable = packed array[0..50] of TParticleArray;
+  TParticleTable = packed array[0..51] of TParticleArray;
 
 const
   ParticleColorIndices: array[0..15] of Byte = (
@@ -2228,7 +2228,7 @@ begin
   Drawn := False;
 
   with L do
-    if LemParticleFrame <= 50 then
+    if LemParticleFrame <= 51 then
       for i := 0 to 79 do
       begin
         X := fParticles[LemParticleFrame][i].DX;
@@ -2280,7 +2280,7 @@ begin
   Drawn := False;
 
   with L do
-    if LemParticleFrame <= 50 then
+    if LemParticleFrame <= 51 then
       for i := 0 to 79 do
       begin
         X := fParticles[LemParticleFrame][i].DX;
