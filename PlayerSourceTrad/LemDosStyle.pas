@@ -1264,7 +1264,7 @@ begin
   Assert(Owner is TBaseDosLemmingStyle);
 
 
-  // added override on demand (look for tricky21 = 221.lvl)
+  // added override on demand (look for tricky21 = 0221.lvl)
   IsLoaded := False;
 
   if fLookForLVL{$ifdef testmode} or fTestMode{$endif} then
