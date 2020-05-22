@@ -37,7 +37,7 @@ type
     DX, DY: ShortInt
   end;
   TParticleArray = packed array[0..79] of TParticleRec;
-  TParticleTable = packed array[0..50] of TParticleArray;
+  TParticleTable = packed array[0..51] of TParticleArray;
 
 const
   ParticleColorIndices: array[0..15] of Byte = (
@@ -103,7 +103,7 @@ type
     LemFrame                      : Integer;        // current animationframe
     LemMaxFrame                   : Integer;        // copy from LMA
     LemAnimationType              : Integer;        // copy from LMA
-    LemParticleTimer              : Integer;        // @particles, 52 downto 0, after explosion
+    LemParticleTimer              : Integer;        // @particles, 53 downto 0, after explosion
     LemParticleFrame              : Integer;        // the "frame" of the particle drawing algorithm
     FrameTopDy                    : Integer;        // = -LMA.FootY (ccexplore compatible)
     FrameLeftDx                   : Integer;        // = -LMA.FootX (ccexplore compatible)
@@ -709,8 +709,8 @@ const
   LEMMING_MAX_X = 1647;
   LEMMING_MAX_Y = 163;
 
-  PARTICLE_FRAMECOUNT = 52;
-  PARTICLE_FINISH_FRAMECOUNT = 52;
+  PARTICLE_FRAMECOUNT = 53;
+  PARTICLE_FINISH_FRAMECOUNT = 53;
 
 function CheckRectCopy(const A, B: TRect): Boolean;
 begin
@@ -2228,7 +2228,7 @@ begin
   Drawn := False;
 
   with L do
-    if LemParticleFrame <= 50 then
+    if LemParticleFrame <= 51 then
       for i := 0 to 79 do
       begin
         X := fParticles[LemParticleFrame][i].DX;
@@ -2280,7 +2280,7 @@ begin
   Drawn := False;
 
   with L do
-    if LemParticleFrame <= 50 then
+    if LemParticleFrame <= 51 then
       for i := 0 to 79 do
       begin
         X := fParticles[LemParticleFrame][i].DX;
@@ -2481,7 +2481,7 @@ begin
           end;
         end // not LemmingRemoved
         // @particles, check explosiondrawing if the lemming is dead
-        else if LemParticleTimer > 1 then begin
+        else if LemParticleTimer > 0 then begin
           DrawParticles(CurrentLemming);
         end;
 
