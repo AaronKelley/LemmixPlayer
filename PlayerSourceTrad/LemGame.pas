@@ -2481,7 +2481,7 @@ begin
           end;
         end // not LemmingRemoved
         // @particles, check explosiondrawing if the lemming is dead
-        else if LemParticleTimer > 0 then begin
+        else if LemParticleTimer > 1 then begin
           DrawParticles(CurrentLemming);
         end;
 
