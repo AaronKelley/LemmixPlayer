@@ -103,7 +103,7 @@ type
     LemFrame                      : Integer;        // current animationframe
     LemMaxFrame                   : Integer;        // copy from LMA
     LemAnimationType              : Integer;        // copy from LMA
-    LemParticleTimer              : Integer;        // @particles, 53 downto 0, after explosion
+    LemParticleTimer              : Integer;        // @particles, 52 downto 0, after explosion
     LemParticleFrame              : Integer;        // the "frame" of the particle drawing algorithm
     FrameTopDy                    : Integer;        // = -LMA.FootY (ccexplore compatible)
     FrameLeftDx                   : Integer;        // = -LMA.FootX (ccexplore compatible)
@@ -709,8 +709,8 @@ const
   LEMMING_MAX_X = 1647;
   LEMMING_MAX_Y = 163;
 
-  PARTICLE_FRAMECOUNT = 53;
-  PARTICLE_FINISH_FRAMECOUNT = 53;
+  PARTICLE_FRAMECOUNT = 52;
+  PARTICLE_FINISH_FRAMECOUNT = 52;
 
 function CheckRectCopy(const A, B: TRect): Boolean;
 begin
