@@ -348,9 +348,9 @@ begin
   begin
     if Shift = [] then
     begin
-      if (Key >= VK_F1) and (Key <= VK_F12) then
+      if ((Key >= VK_F1) and (Key <= VK_F12)) or ((Key >= 48) and (Key <= 56)) or (Key = 187) or (Key = 189) then
       begin
-        if Key <> VK_F11 then
+        if (Key <> VK_F11) and (Key <> 48) then
           Game.RegainControl;
         case Key of
           VK_RETURN:;
@@ -365,6 +365,18 @@ begin
           VK_F9: SetSelectedSkill(spbMiner, True);
           VK_F10: SetSelectedSkill(spbDigger, True);
           VK_F11: SetSelectedSkill(spbPause);
+          189: SetSelectedSkill(spbSlower, True); // minus button
+          187: SetSelectedSkill(spbFaster, True); // plus button
+          // 48 through 56 correspond to the '0' through '8' keys
+          48: SetSelectedSkill(spbPause);
+          49: SetSelectedSkill(spbClimber, True);
+          50: SetSelectedSkill(spbUmbrella, True);
+          51: SetSelectedSkill(spbExplode, True);
+          52: SetSelectedSkill(spbBlocker, True);
+          53: SetSelectedSkill(spbBuilder, True);
+          54: SetSelectedSkill(spbBasher, True);
+          55: SetSelectedSkill(spbMiner, True);
+          56: SetSelectedSkill(spbDigger, True);
           VK_F12: begin
                     // double keypress needed to prevent accidently nuking
                     CurrTime := TimeGetTime;
@@ -400,6 +412,8 @@ begin
     case Key of
       VK_F1    : SetSelectedSkill(spbSlower, False);
       VK_F2    : SetSelectedSkill(spbFaster, False);
+      189      : SetSelectedSkill(spbSlower, False); // minus button
+      187      : SetSelectedSkill(spbFaster, False); // plus button
       VK_LEFT  : GameScroll := gsNone;
       VK_RIGHT : GameScroll := gsNone;
     end;
@@ -685,7 +699,7 @@ begin
   case UpCase(Key) of
 
     // --------- CHEAT ----------------
-    '5':
+    'C':
       begin
         Game.Cheat; // lemgame
       end;
@@ -705,7 +719,7 @@ begin
             end;
 
     // go back approximately 1 game second
-    '-':
+    '[':
             if Game.Playing then
             begin
               if not Game.HyperSpeed then
@@ -735,6 +749,9 @@ begin
 
     // toggle fastforward
     'F': if not Game.Paused then
+           Game.FastForward := not Game.FastForward;
+
+    '9': if not Game.Paused then
            Game.FastForward := not Game.FastForward;
 
     // hide/show lemming debug line
