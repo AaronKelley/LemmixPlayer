@@ -350,7 +350,7 @@ begin
     begin
       if ((Key >= VK_F1) and (Key <= VK_F12)) or ((Key >= 48) and (Key <= 56)) or (Key = 187) or (Key = 189) then
       begin
-        if Key <> VK_F11 then
+        if (Key <> VK_F11) and (Key <> 48) then
           Game.RegainControl;
         case Key of
           VK_RETURN:;
