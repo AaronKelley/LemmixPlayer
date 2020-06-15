@@ -289,12 +289,13 @@ begin
 
   Add('1) Show Particles:            ' + OnOffText(GameParams.ShowParticles));
   Add('2) Lemmix Trap Bug:           ' + OnOffText(GameParams.LemmixTrapBug));
+  Add('3) State Control:             ' + OnOffText(GameParams.StateControlEnabled));
   if fLookForLVLOption then
-    Add('3) Look For LVL Files:        ' + OnOffText(GameParams.LookForLVLFiles));
+    Add('4) Look For LVL Files:        ' + OnOffText(GameParams.LookForLVLFiles));
   if fCustOptions then
     begin
       {$ifdef cust}{$ifndef flexi}
-      Add('4) Mechanics:                ' + MechText(GameParams.Mechanics));
+      Add('5) Mechanics:                ' + MechText(GameParams.Mechanics));
       ts := GameParams.LevelPack;
       while (Length(ts) < 18) do
         ts := ' ' + ts;
@@ -414,6 +415,9 @@ var
         7: begin
              LemmixTrapBug := not LemmixTrapBug;
            end;
+        8: begin
+             StateControlEnabled := not StateControlEnabled;
+           end;
       end;
     BuildScreen;
   end;
@@ -424,8 +428,9 @@ begin
     case lChar of
       '1' : SwitchOption(1);
       '2' : SwitchOption(7);
-      '3' : if fLookForLVLOption then SwitchOption(2);
-      '4' : if fCustOptions then SwitchOption(6);
+      '3' : SwitchOption(8);
+      '4' : if fLookForLVLOption then SwitchOption(2);
+      '5' : if fCustOptions then SwitchOption(6);
       'Q' : if fCustOptions then SwitchOption(4);
       'W' : if fCustOptions then SwitchOption(5);
       'E' : if fTestModeOptions then SwitchOption(3);

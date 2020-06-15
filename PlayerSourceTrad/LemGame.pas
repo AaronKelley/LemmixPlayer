@@ -436,6 +436,7 @@ type
     fSlowingDownReleaseRate    : Boolean;
     fSpeedingUpReleaseRate     : Boolean;
     fPaused                    : Boolean;
+    fPausedSkillAssignmentAllowed : Boolean;
     MaxNumLemmings             : Integer;
     CurrReleaseRate            : Integer;
     CurrClimberCount           : Integer;
@@ -649,6 +650,7 @@ type
     property MiniMapBuffer: TBitmap32 read fMiniMapBuffer;
     property Options: TDosGameOptions read fOptions write SetOptions default DOSORIG_GAMEOPTIONS;
     property Paused: Boolean read fPaused write fPaused;
+    property PausedSkillAssignmentAllowed: Boolean read fPausedSkillAssignmentAllowed write fPausedSkillAssignmentAllowed;
     property Playing: Boolean read fPlaying write fPlaying;
     property Renderer: TRenderer read fRenderer;
     property Replaying: Boolean read fReplaying;
@@ -1173,6 +1175,7 @@ begin
   fSlowingDownReleaseRate := False;
   fSpeedingUpReleaseRate := False;
   fPaused := False;
+  fPausedSkillAssignmentAllowed := True;
   UserSetNuking := False;
   ExploderAssignInProgress := False;
   Index_LemmingToBeNuked := 0;
@@ -3563,8 +3566,13 @@ begin
 
     if Lemming1 <> nil then
     begin
-      fCheckWhichLemmingOnly := False;
-      Result := AssignSkill(Lemming1, Lemming2, Sel);
+      if (not Paused) or fPausedSkillAssignmentAllowed then
+      begin
+        fCheckWhichLemmingOnly := False;
+        Result := AssignSkill(Lemming1, Lemming2, Sel);
+        if Paused and (not (moStateControlEnabled in fGameParams.MiscOptions)) then
+          fPausedSkillAssignmentAllowed := False;
+      end;
     end;
   end;
 end;
@@ -3796,6 +3804,7 @@ begin
           False:
             begin
               Paused := True;
+              PausedSkillAssignmentAllowed := True;
               FastForward := False;
               RecordStartPause;
               //HyperSpeedEnd;

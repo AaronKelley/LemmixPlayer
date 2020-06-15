@@ -71,7 +71,8 @@ type
     moLookForLVLFiles,  // 6
 //    moUseSystemCursor,  // 7
     moLemmixTrapBug,
-    mo9, mo10, mo11, mo12, mo13, mo14, mo15,
+    moStateControlEnabled,
+    mo10, mo11, mo12, mo13, mo14, mo15,
     mo16, mo17, mo18, mo19, mo20, mo21, mo22, mo23,
     mo24, mo25, mo26, mo27, mo28, mo29, mo30, mo31
   );
@@ -85,7 +86,8 @@ const
     moSaveState,
     moHyperJumps,
 //    moCheatCodes,
-    moShowParticles
+    moShowParticles,
+    moStateControlEnabled
     {$ifdef cust}, moLemmixTrapBug{$endif}
 
 //    moLookForLVLFiles
@@ -122,6 +124,8 @@ type             (*
     procedure SetUseSystemCursor(const Value: Boolean);
     function GetLemmixTrapBug: Boolean;
     procedure SetLemmixTrapBug(Value: Boolean);
+    function GetStateControlEnabled: Boolean;
+    procedure SetStateControlEnabled(Value: Boolean);
   public
     // this is initialized by appcontroller
     MainDatFile  : string;
@@ -190,7 +194,6 @@ type             (*
     property DumpMode: boolean read fDumpMode write fDumpMode;
   published
   { easy readable published props for streaming to inifile }
-    //property HyperJumpsEnabled: Boolean read GetHyperJumpsEnabled write SetHyperJumpsEnabled;
     property CheatCodesEnabled: Boolean read GetCheatCodesEnabled write SetCheatCodesEnabled;
     property MusicEnabled: Boolean read GetMusicEnabled write SetMusicEnabled;
     property SoundEnabled: Boolean read GetSoundEnabled write SetSoundEnabled;
@@ -201,7 +204,7 @@ type             (*
     property ExternalPrefix: String read fExternalPrefix write fExternalPrefix;{$endif}{$endif}
     property LemmixTrapBug: boolean read GetLemmixTrapBug write SetLemmixTrapBug;
     {$ifdef testmode}property QuickTestMode: Integer read fQuickTestMode write fQuickTestMode;{$endif}
-//    property UseSystemCursor: Boolean read GetUseSystemCursor write SetUseSystemCursor;
+    property StateControlEnabled: Boolean read GetStateControlEnabled write SetStateControlEnabled;
 
   { zoom }
     property ZoomFactor: Integer read fZoomFactor write fZoomFactor;
@@ -284,6 +287,11 @@ begin
   Result := moLemmixTrapBug in MiscOptions;
 end;
 
+function TDosGameParams.GetStateControlEnabled: Boolean;
+begin
+  Result := moStateControlEnabled in MiscOptions;
+end;
+
 procedure TDosGameParams.LoadFromIniFile(const aFileName: string);
 begin
   IniToObject(aFileName, 'GameSettings', Self, False);
@@ -339,6 +347,14 @@ begin
   case Value of
     False: Exclude(MiscOptions, moLemmixTrapBug);
     True:  Include(MiscOptions, moLemmixTrapBug);
+  end;
+end;
+
+procedure TDosGameParams.SetStateControlEnabled(Value: Boolean);
+begin
+  case Value of
+    False: Exclude(MiscOptions, moStateControlEnabled);
+    True:  Include(MiscOptions, moStateControlEnabled);
   end;
 end;
 

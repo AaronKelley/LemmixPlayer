@@ -365,7 +365,11 @@ begin
           VK_F9: SetSelectedSkill(spbMiner, True);
           VK_F10: SetSelectedSkill(spbDigger, True);
           VK_F11: SetSelectedSkill(spbPause);
-          189: SetSelectedSkill(spbSlower, True); // minus button
+          189: // minus button
+            begin
+              if not GameParams.StateControlEnabled then
+                SetSelectedSkill(spbSlower, True);
+            end;
           187: SetSelectedSkill(spbFaster, True); // plus button
           // 48 through 56 correspond to the '0' through '8' keys
           48: SetSelectedSkill(spbPause);
@@ -412,7 +416,11 @@ begin
     case Key of
       VK_F1    : SetSelectedSkill(spbSlower, False);
       VK_F2    : SetSelectedSkill(spbFaster, False);
-      189      : SetSelectedSkill(spbSlower, False); // minus button
+      189      : // minus button
+            begin
+              if not GameParams.StateControlEnabled then
+                SetSelectedSkill(spbSlower, False);
+            end;
       187      : SetSelectedSkill(spbFaster, False); // plus button
       VK_LEFT  : GameScroll := gsNone;
       VK_RIGHT : GameScroll := gsNone;
@@ -467,7 +475,7 @@ begin
       if HandleClick then
       begin
         Game.ProcessSkillAssignment;
-        if Game.Paused then
+        if Game.Paused and GameParams.StateControlEnabled then
             ForceUpdateOneFrame := True;
       end;
     end;
@@ -719,8 +727,8 @@ begin
             end;
 
     // go back approximately 1 game second
-    '[':
-            if Game.Playing then
+    '-':
+            if GameParams.StateControlEnabled and Game.Playing then
             begin
               if not Game.HyperSpeed then
               begin
@@ -733,7 +741,7 @@ begin
 
     // go back 1 frame
     'B':
-            if Game.Playing then
+            if GameParams.StateControlEnabled and Game.Playing then
             begin
               if not Game.HyperSpeed then
               begin
@@ -767,7 +775,8 @@ begin
     'I': SaveShot;
 
     // load replay file
-    'L': LoadReplay;
+    'L': if GameParams.StateControlEnabled then
+           LoadReplay;
 
     // enable/disable music
     'M': begin
@@ -781,7 +790,7 @@ begin
 
     // do next frame if paused
     'N': {if LemmixDebugMode then}
-      if Game.Paused then
+      if GameParams.StateControlEnabled and Game.Paused then
         //if Game.Replaying then
           ForceUpdateOneFrame := True;
 
@@ -809,7 +818,8 @@ begin
     'P': Game.SetSelectedSkill(spbPause);
 
     // start replay
-    'R': StartReplay;
+    'R': if GameParams.StateControlEnabled then
+           StartReplay;
 
     // enable/disable sounds
     'S': begin
@@ -824,60 +834,31 @@ begin
 
     'Z': with Game do
          begin
-         RegainControl;
-         case SelectedSkill of
-           spbUmbrella: SetSelectedSkill(spbClimber, True);
-           spbExplode: SetSelectedSkill(spbUmbrella, True);
-           spbBlocker: SetSelectedSkill(spbExplode, True);
-           spbBuilder: SetSelectedSkill(spbBlocker, True);
-           spbBasher: SetSelectedSkill(spbBuilder, True);
-           spbMiner: SetSelectedSkill(spbBasher, True);
-           spbDigger: SetSelectedSkill(spbMiner, True);
-         end;
+           RegainControl;
+           case SelectedSkill of
+             spbUmbrella: SetSelectedSkill(spbClimber, True);
+             spbExplode: SetSelectedSkill(spbUmbrella, True);
+             spbBlocker: SetSelectedSkill(spbExplode, True);
+             spbBuilder: SetSelectedSkill(spbBlocker, True);
+             spbBasher: SetSelectedSkill(spbBuilder, True);
+             spbMiner: SetSelectedSkill(spbBasher, True);
+             spbDigger: SetSelectedSkill(spbMiner, True);
+           end;
          end;
 
     'X': with Game do
          begin
-         RegainControl;
-         case SelectedSkill of
-           spbClimber: SetSelectedSkill(spbUmbrella, True);
-           spbUmbrella: SetSelectedSkill(spbExplode, True);
-           spbExplode: SetSelectedSkill(spbBlocker, True);
-           spbBlocker: SetSelectedSkill(spbBuilder, True);
-           spbBuilder: SetSelectedSkill(spbBasher, True);
-           spbBasher: SetSelectedSkill(spbMiner, True);
-           spbMiner: SetSelectedSkill(spbDigger, True);
+           RegainControl;
+           case SelectedSkill of
+             spbClimber: SetSelectedSkill(spbUmbrella, True);
+             spbUmbrella: SetSelectedSkill(spbExplode, True);
+             spbExplode: SetSelectedSkill(spbBlocker, True);
+             spbBlocker: SetSelectedSkill(spbBuilder, True);
+             spbBuilder: SetSelectedSkill(spbBasher, True);
+             spbBasher: SetSelectedSkill(spbMiner, True);
+             spbMiner: SetSelectedSkill(spbDigger, True);
+           end;
          end;
-         end;
-
-    // first stab at time pause support
-    //'Z': Game.DoTimePause := not Game.DoTimePause;
-
-    // --------- UPPERCASE ------------
-
-    // disable/enable changing the selected skillbutton with mouse when paused
-//    'C': if LemmixDebugMode then
-  //         Game.SkillButtonsDisabledWhenPaused := not Game.SkillButtonsDisabledWhenPaused;
-
-
-    {'F':
-      begin
-            if Game.Playing then
-            begin
-              if not Game.HyperSpeed then
-              begin
-                //windows.beep(448, 3);
-                Game.HyperSpeedBegin;
-                Game.TargetIteration := Game.CurrentIteration + 17*60;
-              end
-              else begin
-                Game.HyperSpeedEnd;
-              end;
-            end;
-
-      end; }
-
-
 
   end;
 end;
