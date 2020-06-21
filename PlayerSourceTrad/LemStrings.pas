@@ -71,16 +71,17 @@ resourcestring
     'namida for Flexi player and' + #13 +
     'general updates to Lemmix' + #13 +{$endif}
     'DMA for the original game' + #13 +
-    'ccexplore for game-mechanics' + #13 +
+    'ccexplore for game mechanics' + #13 +
     'Alex A. Denisov for Graphics32' + #13 +
     'Erik Turner for ZLibEx' + #13 +
     'Peter Morris for FastStrings' + #13 +
     'Un4seen Development for Bassmod at' + #13 +
-    'http://www.un4seen.com' + #13 +
+    'http://www.un4seen.com/' + #13 +
     'The Lemmings Forums at' + #13 +
     'https://www.lemmingsforums.net/' + #13 +
-    'Volker Oth, ccexplore and Mindless for sharing sourcecode, resources ' +
-    'and technical information about lemmings' + #13 +
+    'Volker Oth, ccexplore and Mindless for sharing source code, resources ' +
+    'and technical information about Lemmings' + #13 +
+    'Add''l updates from Aaron Kelley' + #13 +
     'Original credits...'  + #13 +
     'Lemmings By DMA Design'  + #13 +
     'Programming By Russell Kay'  + #13 +
