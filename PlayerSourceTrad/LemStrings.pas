@@ -14,7 +14,7 @@ uses
 //    3) adds support for nuke glitch
 
 const
-  SVersion = 'DEV';
+  SVersion = 'V29D';
 
   //@styledef
   SCheatCode = 'cheatcodes';
