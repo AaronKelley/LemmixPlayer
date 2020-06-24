@@ -394,10 +394,14 @@ begin
       // other keys
       else begin
         case Key of
-          VK_RETURN : AddSaveState;
-          VK_BACK   : NextSaveState(False);
           VK_LEFT   : GameScroll := gsLeft;
           VK_RIGHT  : GameScroll := gsRight;
+          VK_RETURN : AddSaveState;
+          VK_BACK   :
+            begin
+              if GameParams.StateControlEnabled then
+                NextSaveState(False);
+            end;
         end;
       end;
     end;
