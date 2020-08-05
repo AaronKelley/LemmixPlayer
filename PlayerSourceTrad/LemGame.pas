@@ -3566,7 +3566,7 @@ begin
 
     if Lemming1 <> nil then
     begin
-      if (not Paused) or fPausedSkillAssignmentAllowed then
+      if (not Paused) or (fPausedSkillAssignmentAllowed and (moPauseAssignEnabled in fGameParams.MiscOptions)) then
       begin
         fCheckWhichLemmingOnly := False;
         Result := AssignSkill(Lemming1, Lemming2, Sel);
