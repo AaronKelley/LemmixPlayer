@@ -72,7 +72,8 @@ type
 //    moUseSystemCursor,  // 7
     moLemmixTrapBug,
     moStateControlEnabled,
-    mo10, mo11, mo12, mo13, mo14, mo15,
+    moPauseAssignEnabled,
+    mo11, mo12, mo13, mo14, mo15,
     mo16, mo17, mo18, mo19, mo20, mo21, mo22, mo23,
     mo24, mo25, mo26, mo27, mo28, mo29, mo30, mo31
   );
@@ -87,7 +88,8 @@ const
     moHyperJumps,
 //    moCheatCodes,
     moShowParticles,
-    moStateControlEnabled
+    moStateControlEnabled,
+    moPauseAssignEnabled
     {$ifdef cust}, moLemmixTrapBug{$endif}
 
 //    moLookForLVLFiles
@@ -126,6 +128,8 @@ type             (*
     procedure SetLemmixTrapBug(Value: Boolean);
     function GetStateControlEnabled: Boolean;
     procedure SetStateControlEnabled(Value: Boolean);
+    function GetPauseAssignEnabled: Boolean;
+    procedure SetPauseAssignEnabled(Value: Boolean);
   public
     // this is initialized by appcontroller
     MainDatFile  : string;
@@ -205,6 +209,7 @@ type             (*
     property LemmixTrapBug: boolean read GetLemmixTrapBug write SetLemmixTrapBug;
     {$ifdef testmode}property QuickTestMode: Integer read fQuickTestMode write fQuickTestMode;{$endif}
     property StateControlEnabled: Boolean read GetStateControlEnabled write SetStateControlEnabled;
+    property PauseAssignEnabled: Boolean read GetPauseAssignEnabled write SetPauseAssignEnabled;
 
   { zoom }
     property ZoomFactor: Integer read fZoomFactor write fZoomFactor;
@@ -292,6 +297,11 @@ begin
   Result := moStateControlEnabled in MiscOptions;
 end;
 
+function TDosGameParams.GetPauseAssignEnabled: Boolean;
+begin
+  Result := moPauseAssignEnabled in MiscOptions;
+end;
+
 procedure TDosGameParams.LoadFromIniFile(const aFileName: string);
 begin
   IniToObject(aFileName, 'GameSettings', Self, False);
@@ -355,6 +365,14 @@ begin
   case Value of
     False: Exclude(MiscOptions, moStateControlEnabled);
     True:  Include(MiscOptions, moStateControlEnabled);
+  end;
+end;
+
+procedure TDosGameParams.SetPauseAssignEnabled(Value: Boolean);
+begin
+  case Value of
+    False: Exclude(MiscOptions, moPauseAssignEnabled);
+    True:  Include(MiscOptions, moPauseAssignEnabled);
   end;
 end;
 
