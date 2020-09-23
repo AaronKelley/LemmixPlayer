@@ -14,7 +14,7 @@ uses
 //    3) adds support for nuke glitch
 
 const
-  SVersion = 'V29G';
+  SVersion = 'V29H';
 
   //@styledef
   SCheatCode = 'cheatcodes';
@@ -266,8 +266,7 @@ resourcestring
     'teeth. Time to progress..';
 
   SResultOhNo6 =
-    // This seems a typo but it really is enough+space + point in the exe
-    'More than enough .You have the makings' + #13 +
+    'More than enough. You have the makings' + #13 +
     'of a master Lemmings player.';
 
   SResultOhNo7 =
