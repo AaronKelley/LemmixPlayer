@@ -47,10 +47,10 @@ resourcestring
     'Xmas Lemmings 91/92 Clone (' + SVersion + ')' + #13 +
     {$endif}
     {$ifdef covox}
-    'Covox Lemmings Demo Clone (' + SVersion + ')' + #13 +
+    'Save the Lemmings Clone (' + SVersion + ')' + #13 +
     {$endif}
     {$ifdef prima}
-    'Prima Publishing Demo Clone (' + SVersion + ')' + #13 +
+    'Lemmings Official Companion Clone (' + SVersion + ')' + #13 +
     {$endif}
     {$ifdef extra}
     'Extra Levels Lemmix Player (' + SVersion + ')' + #13 +
@@ -263,7 +263,7 @@ resourcestring
 
   SResultOhNo5 =
     'Just made it by the skin of your' + #13 +
-    'teeth. Time to progress..';
+    'teeth. Time to progress...';
 
   SResultOhNo6 =
     'More than enough. You have the makings' + #13 +
