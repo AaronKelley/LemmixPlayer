@@ -41,10 +41,10 @@ resourcestring
     'Oh No! More Lemmings! Clone (' + SVersion + ')' + #13 +
     {$endif}
     {$ifdef H94}
-    'Holiday Lemmings 94 Clone (' + SVersion + ')' + #13 +
+    'Holiday Lemmings 1994 Clone (' + SVersion + ')' + #13 +
     {$endif}
     {$ifdef xmas}
-    'Xmas Lemmings 91/92 Clone (' + SVersion + ')' + #13 +
+    'Xmas Lemmings 1991 & 1992 Clone (' + SVersion + ')' + #13 +
     {$endif}
     {$ifdef covox}
     'Save the Lemmings Clone (' + SVersion + ')' + #13 +
